@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зворотній відлік до Нового року</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Зворотній відлік до Нового року</h1>
+    <div class="countdown">
+        <div>
+            <span id="days">00</span> днів
+        </div>
+        <div>
+            <span id="hours">00</span> годин
+        </div>
+        <div>
+            <span id="minutes">00</span> хвилин
+        </div>
+        <div>
+            <span id="seconds">00</span> секунд
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const newYear = new Date(now.getFullYear() + 1, 0, 1);
+            const timeLeft = newYear - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000).toString().padStart(2, '0');
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        // Оновлюємо відлік кожну секунду
+        setInterval(updateCountdown, 1000);
+
+        // Запускаємо оновлення відліку відразу при завантаженні сторінки
+        updateCountdown();
+    </script>
+</body>
+</html>
